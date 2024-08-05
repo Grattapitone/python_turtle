@@ -1,14 +1,18 @@
 import turtle as t
 
-def letters(letter):
-  if letter == "A":
-      t.goto(25,100)
-      t.goto(50,0)
-      t.up()
-      t.goto(12,50)
-      t.down()
-      t.forward(25)
+def draw_letter(x,y,width,height,letter):
+    t.up()
+    t.goto(x,y)
+    t.down()
+    if letter == "A":
+        t.goto(x + width / 2, y + height)
+        t.goto(x + width,y)
+        t.up()
+        t.goto(x + width / 4, y + height / 2)
+        t.down()
+        t.forward(width / 2)
 
-letters("A")
+draw_letter(-250,0,500,30,"A")
+t.hideturtle()
 
 t.done()
