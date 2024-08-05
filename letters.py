@@ -1,5 +1,6 @@
 import turtle as t
 
-t.forward(100)
+def letters():
+  pass
 
 t.done()
