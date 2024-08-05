@@ -11,8 +11,21 @@ def draw_letter(x,y,width,height,letter):
         t.goto(x + width / 4, y + height / 2)
         t.down()
         t.forward(width / 2)
+    else:
+        t.forward(width)
+        t.lt(90)
+        t.forward(height)
+        t.lt(90)
+        t.forward(width)
+        t.lt(90)
+        t.forward(height)
+        t.lt(90)
 
-draw_letter(-250,0,500,30,"A")
+def draw_word(x,y,word):
+    for i in word:
+        draw_letter(x,y,100,200,i)
+
+draw_word(-100,0,"AA")
 t.hideturtle()
 
 t.done()
