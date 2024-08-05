@@ -11,6 +11,10 @@ def draw_letter(x,y,width,height,letter):
         t.goto(x + width / 4, y + height / 2)
         t.down()
         t.forward(width / 2)
+    elif letter == " ":
+        t.up()
+        t.forward(width)
+        t.down()
     else:
         t.forward(width)
         t.lt(90)
@@ -22,10 +26,19 @@ def draw_letter(x,y,width,height,letter):
         t.lt(90)
 
 def draw_word(x,y,word):
-    for i in word:
-        draw_letter(x,y,100,200,i)
+    t.seth(0)
+    if x == "centered":
+        length = len(word) * 100 + (len(word) - 1) * 25
+        xpos = length * -0.5
+        for character in word:
+            draw_letter(xpos,y,100,200,character)
+            xpos += 125
+    else:
+        for character in word:
+            draw_letter(x,y,100,200,character)
+            x += 125
 
-draw_word(-100,0,"AA")
+draw_word("centered",0,"A B")
 t.hideturtle()
 
 t.done()
