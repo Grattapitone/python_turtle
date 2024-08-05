@@ -101,21 +101,21 @@ def draw_letter(x,y,width,height,letter):
         t.forward(height)
         t.lt(90)
 
-def draw_word(word,y,x = "centered"):
+def draw_word(width,height,word,y,x = "centered"):
     t.seth(0)
     if x == "centered":
-        length = len(word) * 100 + (len(word) - 1) * 25
+        length = len(word) * width + (len(word) - 1) * 25
         xpos = length * -0.5
         for character in word:
-            draw_letter(xpos,y,100,200,character)
-            xpos += 125
+            draw_letter(xpos,y,width,height,character)
+            xpos += width + 25
     else:
         for character in word:
-            draw_letter(x,y,100,200,character)
-            x += 125
+            draw_letter(x,y,width,height,character)
+            x += width + 25
 t.speed("fastest")
-draw_word("ABCDEF",100)
-draw_word("GHIP Z",-150)
+draw_word(200,30,"ABCDEF",100)
+draw_word(200,30,"GHIP Z",-150)
 t.hideturtle()
 
 t.done()
