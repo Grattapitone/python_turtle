@@ -130,6 +130,18 @@ def draw_letter(x,y,width,height,letter):
             t.goto(x + width * (3/4), y + height / 4)
             t.down()
             t.goto(x + width,y)
+    elif letter == "S":
+        ellipse(width / 2, height / 4 - height / 16, x + width / 2, y + height * (3/4) + height / 16,270,1,1,"cossin")
+        ellipse(width / 2, height / 4 + height / 16, x + width / 2, y + height / 4 + height / 16,270)
+    elif letter == "T":
+        t.up()
+        t.forward(width / 2)
+        t.down()
+        t.lt(90)
+        t.forward(height)
+        t.rt(90)
+        t.backward(width / 2)
+        t.forward(width)
     elif letter == " ":
         t.up()
         t.forward(width)
@@ -166,8 +178,8 @@ def draw_word(width,height,word,y = "centered",x = "centered"):
             for character in word:
                 draw_letter(x,y,width,height,character)
                 x += width + 25
-t.speed("slowest")
-draw_word(100,200,"AERYQYZARTY")
+t.speed("fastest")
+draw_word(100,200,"POTATO")
 t.hideturtle()
 
 t.done()
