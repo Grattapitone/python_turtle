@@ -112,6 +112,11 @@ def draw_letter(x,y,width,height,letter):
         t.goto(x, y + height)
         t.goto(x,y)
         t.forward(width)
+    elif letter == "M":
+        t.goto(x, y + height)
+        t.goto(x + width / 2, y)
+        t.goto(x + width, y + height)
+        t.goto(x + width, y)
     elif letter == " ":
         t.up()
         t.forward(width)
@@ -150,7 +155,7 @@ def draw_word(width,height,word,y = "centered",x = "centered"):
                 draw_letter(x,y,width,height,character)
                 x += width + 25
 t.speed("fastest")
-draw_word(100,200,"ELIF")
+draw_word(100,200,"Mm")
 t.hideturtle()
 
 t.done()
