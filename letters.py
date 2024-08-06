@@ -3,8 +3,9 @@ import math
 
 t.shape("turtle")
 t.fillcolor("blue")
+t.width(10)
 
-def ellipse(a, b, h=None, k=None, angle=None, negate = 1, angle_unit=None):
+def ellipse(a, b, h=None, k=None, angle=None, negate1 = 1, negate2 = 1, orientation = "sincos", angle_unit=None):
     if h is None:
         h = 0
     if k is None:
@@ -25,7 +26,11 @@ def ellipse(a, b, h=None, k=None, angle=None, negate = 1, angle_unit=None):
             t.up()
         else:
             t.down()
-        t.setposition(negate*(h+a*math.sin(i/50)), (k + b * math.cos(i/50)))
+        if orientation == "sincos":
+            t.setposition(negate1*(h+a*math.sin(i/50)), negate2*(k + b * math.cos(i/50)))
+        else:
+            t.setposition(negate1*(h+a*math.cos(i/50)), negate2*(k + b * math.sin(i/50)))
+
 
 def draw_letter(x,y,width,height,letter):
     t.seth(0)
@@ -66,7 +71,6 @@ def draw_letter(x,y,width,height,letter):
         t.forward(height / 2)
         t.rt(90)
         t.forward(width)
-        t.backward(width)
     elif letter == "G":
         ellipse(width / 2, height / 2, -x - width / 2, y + height / 2,270,-1)
         t.backward(width / 2)
@@ -87,6 +91,23 @@ def draw_letter(x,y,width,height,letter):
         t.rt(90)
         t.backward(width / 2)
         t.forward(width)
+    elif letter == "J":
+        t.up()
+        t.goto(x,y + height)
+        t.down()
+        t.forward(width)
+        t.backward(width / 2)
+        t.rt(90)
+        t.forward(height * (3/4))
+        ellipse(width / 4, height / 4, x + width / 4, -y - height / 4,180,1,-1,"cossin")
+    elif letter == "K":
+        t.lt(90)
+        t.forward(height)
+        t.backward(height / 2)
+        t.rt(90)
+        t.goto(x + width, y + height)
+        t.setposition(x,y + height / 2)
+        t.goto(x + width,y)
     elif letter == " ":
         t.up()
         t.forward(width)
@@ -101,21 +122,31 @@ def draw_letter(x,y,width,height,letter):
         t.forward(height)
         t.lt(90)
 
-def draw_word(width,height,word,y,x = "centered"):
+def draw_word(width,height,word,y = "centered",x = "centered"):
     t.seth(0)
     if x == "centered":
         length = len(word) * width + (len(word) - 1) * 25
         xpos = length * -0.5
-        for character in word:
-            draw_letter(xpos,y,width,height,character)
-            xpos += width + 25
+        if y == "centered":
+            ypos = -(height / 2)
+            for character in word:
+                draw_letter(xpos,ypos,width,height,character)
+                xpos += width + 25
+        else:
+            for character in word:
+                draw_letter(xpos,y,width,height,character)
+                xpos += width + 25
     else:
-        for character in word:
-            draw_letter(x,y,width,height,character)
-            x += width + 25
+        if y == "centered":
+            for character in word:
+                draw_letter(x,ypos,width,height,character)
+                x += width + 25
+        else:
+            for character in word:
+                draw_letter(x,y,width,height,character)
+                x += width + 25
 t.speed("fastest")
-draw_word(200,30,"ABCDEF",100)
-draw_word(200,30,"GHIP Z",-150)
+draw_word(100,200,"MARCO")
 t.hideturtle()
 
 t.done()
