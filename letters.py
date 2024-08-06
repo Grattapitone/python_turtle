@@ -44,13 +44,15 @@ def draw_letter(x,y,width,height,letter):
         t.goto(x + width / 4, y + height / 2)
         t.down()
         t.forward(width / 2)
-    elif letter == "B" or letter == "P":
+    elif letter == "B" or letter == "P" or letter == "R":
         t.lt(90)
         t.forward(height)
         t.rt(90)
         ellipse(width,height / 4,x,y + height * (3/4),180)
         if letter == "B":
             ellipse(width,height / 4,x,y + height / 4,180)
+        if letter == "R":
+            t.goto(x + width,y)
     elif letter == "C":
         ellipse(width / 2, height / 2, -x - width / 2, y + height / 2,225,-1)
     elif letter == "D":
@@ -117,6 +119,17 @@ def draw_letter(x,y,width,height,letter):
         t.goto(x + width / 2, y)
         t.goto(x + width, y + height)
         t.goto(x + width, y)
+    elif letter == "N":
+        t.goto(x, y + height)
+        t.goto(x + width, y)
+        t.goto(x + width, y + height)
+    elif letter == "O" or letter == "Q":
+        ellipse(width / 2, height / 2, x + width / 2, y + height / 2, )
+        if letter == "Q":
+            t.up()
+            t.goto(x + width * (3/4), y + height / 4)
+            t.down()
+            t.goto(x + width,y)
     elif letter == " ":
         t.up()
         t.forward(width)
@@ -132,7 +145,6 @@ def draw_letter(x,y,width,height,letter):
         t.lt(90)
 
 def draw_word(width,height,word,y = "centered",x = "centered"):
-    t.seth(0)
     if x == "centered":
         length = len(word) * width + (len(word) - 1) * 25
         xpos = length * -0.5
@@ -154,8 +166,8 @@ def draw_word(width,height,word,y = "centered",x = "centered"):
             for character in word:
                 draw_letter(x,y,width,height,character)
                 x += width + 25
-t.speed("fastest")
-draw_word(100,200,"Mm")
+t.speed("slowest")
+draw_word(100,200,"AERYQYZARTY")
 t.hideturtle()
 
 t.done()
