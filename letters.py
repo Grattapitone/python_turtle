@@ -228,7 +228,7 @@ t.speed("fastest")
 draw_word(50,100,"READING THIS SIGN",0)
 draw_word(50,100,"COULD CAUSE",-125)
 draw_word(50,100,"SERIOUS ACCIDENTS",-250)"""
-draw_word(100,200,"XYZç")
+draw_word(100,200,"XYZ")
 t.hideturtle()
 
 t.done()
