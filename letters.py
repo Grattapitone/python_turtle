@@ -3,7 +3,6 @@ import math
 
 t.shape("turtle")
 t.fillcolor("blue")
-t.width(10)
 
 def ellipse(a, b, h=None, k=None, angle=None, negate1 = 1, negate2 = 1, orientation = "sincos", angle_unit=None):
     if h is None:
@@ -142,6 +141,15 @@ def draw_letter(x,y,width,height,letter):
         t.rt(90)
         t.backward(width / 2)
         t.forward(width)
+    elif letter == "U":
+        t.up()
+        t.goto(x, y + height)
+        t.down()
+        t.rt(90)
+        t.forward(height * (3/4))
+        ellipse(width / 2, height / 4, -x - width / 2, -y - height / 4, 180, -1, -1, "cossin")
+        t.rt(180)
+        t.forward(height * (3/4))
     elif letter == " ":
         t.up()
         t.forward(width)
@@ -156,30 +164,34 @@ def draw_letter(x,y,width,height,letter):
         t.forward(height)
         t.lt(90)
 
-def draw_word(width,height,word,y = "centered",x = "centered"):
+def draw_word(width,height,word,y = "centered",x = "centered",Boldness = 10,spaceBetL = 25):
+    t.width(Boldness)
     if x == "centered":
-        length = len(word) * width + (len(word) - 1) * 25
+        length = len(word) * width + (len(word) - 1) * spaceBetL
         xpos = length * -0.5
         if y == "centered":
             ypos = -(height / 2)
             for character in word:
                 draw_letter(xpos,ypos,width,height,character)
-                xpos += width + 25
+                xpos += width + spaceBetL
         else:
             for character in word:
                 draw_letter(xpos,y,width,height,character)
-                xpos += width + 25
+                xpos += width + spaceBetL
     else:
         if y == "centered":
             for character in word:
                 draw_letter(x,ypos,width,height,character)
-                x += width + 25
+                x += width + spaceBetL
         else:
             for character in word:
                 draw_letter(x,y,width,height,character)
-                x += width + 25
+                x += width + spaceBetL
 t.speed("fastest")
-draw_word(100,200,"POTATO")
+draw_word(100,200,"ATTENTION",200,Boldness = 30,spaceBetL = 30)
+draw_word(50,100,"READING THIS SIGN",0)
+draw_word(50,100,"COULD CAUSE",-125)
+draw_word(50,100,"SERIOUS ACCIDENTS",-250)
 t.hideturtle()
 
 t.done()
