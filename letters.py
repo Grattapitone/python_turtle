@@ -164,6 +164,28 @@ def draw_letter(x,y,width,height,letter):
         t.goto(x + width / 2, y + height)
         t.goto(x + width * (3/4), y)
         t.goto(x + width, y + height)
+    elif letter == "X":
+        t.goto(x + width, y + height)
+        t.up()
+        t.backward(width)
+        t.down()
+        t.goto(x + width, y)
+    elif letter == "Y":
+        t.up()
+        t.goto(x, y + height)
+        t.down()
+        t.goto(x + width / 2, y + height / 2)
+        t.rt(90)
+        t.forward(height / 2)
+        t.backward(height / 2)
+        t.goto(x + width, y + height)
+    elif letter == "Z":
+        t.up()
+        t.goto(x, y + height)
+        t.down()
+        t.forward(width)
+        t.goto(x, y)
+        t.forward(width)
     elif letter == " ":
         t.up()
         t.forward(width)
@@ -206,7 +228,7 @@ t.speed("fastest")
 draw_word(50,100,"READING THIS SIGN",0)
 draw_word(50,100,"COULD CAUSE",-125)
 draw_word(50,100,"SERIOUS ACCIDENTS",-250)"""
-draw_word(100,200,"ABCDEFGHI")
+draw_word(100,200,"XYZç")
 t.hideturtle()
 
 t.done()
