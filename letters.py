@@ -150,6 +150,20 @@ def draw_letter(x,y,width,height,letter):
         ellipse(width / 2, height / 4, -x - width / 2, -y - height / 4, 180, -1, -1, "cossin")
         t.rt(180)
         t.forward(height * (3/4))
+    elif letter == "V":
+        t.up()
+        t.goto(x, y + height)
+        t.down()
+        t.goto(x + width / 2, y)
+        t.goto(x + width, y + height)
+    elif letter == "W":
+        t.up()
+        t.goto(x, y + height)
+        t.down()
+        t.goto(x + width / 4, y)
+        t.goto(x + width / 2, y + height)
+        t.goto(x + width * (3/4), y)
+        t.goto(x + width, y + height)
     elif letter == " ":
         t.up()
         t.forward(width)
@@ -188,10 +202,11 @@ def draw_word(width,height,word,y = "centered",x = "centered",Boldness = 10,spac
                 draw_letter(x,y,width,height,character)
                 x += width + spaceBetL
 t.speed("fastest")
-draw_word(100,200,"ATTENTION",200,Boldness = 30,spaceBetL = 30)
+"""draw_word(100,200,"ATTENTION",200,Boldness = 30,spaceBetL = 30)
 draw_word(50,100,"READING THIS SIGN",0)
 draw_word(50,100,"COULD CAUSE",-125)
-draw_word(50,100,"SERIOUS ACCIDENTS",-250)
+draw_word(50,100,"SERIOUS ACCIDENTS",-250)"""
+draw_word(100,200,"ABCDEFGHI")
 t.hideturtle()
 
 t.done()
