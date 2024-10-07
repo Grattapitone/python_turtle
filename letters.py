@@ -190,6 +190,16 @@ def draw_letter(x,y,width,height,letter):
         t.up()
         t.forward(width)
         t.down()
+    elif letter == "_":
+        t.forward(width)
+    elif letter == ".":
+        t.dot(10)
+    elif letter == ",":
+        t.up()
+        t.forward(width/4)
+        t.down()
+        t.right(110)
+        t.forward(height/10)
     else:
         t.forward(width)
         t.lt(90)
@@ -224,7 +234,7 @@ def draw_word(width,height,word,y = "centered",x = "centered",Boldness = 10,spac
                 draw_letter(x,y,width,height,character)
                 x += width + spaceBetL
 t.speed("fastest")
-draw_word(100,200,"QWERTZ")
+draw_word(100,200,",._")
 t.hideturtle()
 
 t.done()
