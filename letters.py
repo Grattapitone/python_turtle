@@ -4,7 +4,7 @@ import math
 t.shape("turtle")
 t.fillcolor("blue")
 
-def ellipse(a, b, h=None, k=None, angle=None, negate1 = 1, negate2 = 1, orientation = "sincos", angle_unit=None):
+def ellipse(width, height, h=None, k=None, angle=None, negate1 = 1, negate2 = 1, orientation = "sincos", angle_unit=None):
     if h is None:
         h = 0
     if k is None:
@@ -26,9 +26,9 @@ def ellipse(a, b, h=None, k=None, angle=None, negate1 = 1, negate2 = 1, orientat
         else:
             t.down()
         if orientation == "sincos":
-            t.setposition(negate1*(h+a*math.sin(i/50)), negate2*(k + b * math.cos(i/50)))
+            t.setposition(negate1*(h+width*math.sin(i/50)), negate2*(k + height * math.cos(i/50)))
         else:
-            t.setposition(negate1*(h+a*math.cos(i/50)), negate2*(k + b * math.sin(i/50)))
+            t.setposition(negate1*(h+width*math.cos(i/50)), negate2*(k + height * math.sin(i/50)))
 
 
 def draw_letter(x,y,width,height,letter):
@@ -224,11 +224,7 @@ def draw_word(width,height,word,y = "centered",x = "centered",Boldness = 10,spac
                 draw_letter(x,y,width,height,character)
                 x += width + spaceBetL
 t.speed("fastest")
-"""draw_word(100,200,"ATTENTION",200,Boldness = 30,spaceBetL = 30)
-draw_word(50,100,"READING THIS SIGN",0)
-draw_word(50,100,"COULD CAUSE",-125)
-draw_word(50,100,"SERIOUS ACCIDENTS",-250)"""
-draw_word(100,200,"XYZ")
+draw_word(100,200,"QWERTZ")
 t.hideturtle()
 
 t.done()
