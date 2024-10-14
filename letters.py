@@ -31,7 +31,7 @@ def ellipse(width, height, h=None, k=None, angle=None, negate1 = 1, negate2 = 1,
             t.setposition(negate1*(h+width*math.cos(i/50)), negate2*(k + height * math.sin(i/50)))
 
 
-def draw_letter(x,y,width,height,letter):
+def draw_letter(x,y,width,height,letter,boldness = 10):
     t.seth(0)
     t.up()
     t.goto(x,y)
@@ -97,10 +97,9 @@ def draw_letter(x,y,width,height,letter):
         t.goto(x,y + height)
         t.down()
         t.forward(width)
-        t.backward(width / 2)
         t.rt(90)
         t.forward(height * (3/4))
-        ellipse(width / 4, height / 4, x + width / 4, -y - height / 4,180,1,-1,"cossin")
+        ellipse(width / 2, height / 4, x + width / 2, -y - height / 4,180,1,-1,"cossin")
     elif letter == "K":
         t.lt(90)
         t.forward(height)
@@ -192,14 +191,28 @@ def draw_letter(x,y,width,height,letter):
         t.down()
     elif letter == "_":
         t.forward(width)
-    elif letter == ".":
-        t.dot(10)
-    elif letter == ",":
+    elif letter == "." or letter == ":" or letter == "!":
+        t.dot(boldness)
+        if letter == ":":
+            t.up()
+            t.goto(x,y + height / 2)
+            t.dot(boldness)
+        if letter == "!":
+            t.up()
+            t.left(90)
+            t.forward(height/8)
+            t.down()
+            t.forward(height*(7/8))
+    elif letter == "," or letter == ";":
         t.up()
         t.forward(width/4)
         t.down()
         t.right(110)
         t.forward(height/10)
+        if letter == ";":
+            t.up()
+            t.goto(x + width / 4,y + height / 2)
+            t.dot(boldness)
     else:
         t.forward(width)
         t.lt(90)
@@ -218,23 +231,23 @@ def draw_word(width,height,word,y = "centered",x = "centered",Boldness = 10,spac
         if y == "centered":
             ypos = -(height / 2)
             for character in word:
-                draw_letter(xpos,ypos,width,height,character)
+                draw_letter(xpos,ypos,width,height,character,Boldness)
                 xpos += width + spaceBetL
         else:
             for character in word:
-                draw_letter(xpos,y,width,height,character)
+                draw_letter(xpos,y,width,height,character,Boldness)
                 xpos += width + spaceBetL
     else:
         if y == "centered":
             for character in word:
-                draw_letter(x,ypos,width,height,character)
+                draw_letter(x,ypos,width,height,character,Boldness)
                 x += width + spaceBetL
         else:
             for character in word:
-                draw_letter(x,y,width,height,character)
+                draw_letter(x,y,width,height,character,Boldness)
                 x += width + spaceBetL
 t.speed("fastest")
-draw_word(100,200,",._")
+draw_word(100,200,"ZUJRTDI",Boldness = 10)
 t.hideturtle()
 
 t.done()
