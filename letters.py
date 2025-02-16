@@ -97,9 +97,11 @@ def draw_letter(x,y,width,height,letter,boldness = 10):
         t.goto(x,y + height)
         t.down()
         t.forward(width)
-        t.rt(90)
+        t.rt(180)
+        t.forward(width / 4)
+        t.lt(90)
         t.forward(height * (3/4))
-        ellipse(width / 2, height / 4, x + width / 2, -y - height / 4,180,1,-1,"cossin")
+        ellipse(width * (3/8), height / 4, x + width * (3/8), -y - height / 4,180,1,-1,"cossin")
     elif letter == "K":
         t.lt(90)
         t.forward(height)
@@ -246,8 +248,11 @@ def draw_word(width,height,word,y = "centered",x = "centered",Boldness = 10,spac
             for character in word:
                 draw_letter(x,y,width,height,character,Boldness)
                 x += width + spaceBetL
+screen = t.Screen()
+screen.bgcolor("#000000")
+t.color("#FFFF0F")
 t.speed("fastest")
-draw_word(100,200,"ZUJRTDI",Boldness = 10)
+draw_word(100,200,"BANANA",Boldness = 10)
 t.hideturtle()
 
 t.done()
