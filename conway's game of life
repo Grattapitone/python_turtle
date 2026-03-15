@@ -1,0 +1,45 @@
+board = [[0, 0, 0, 0, 0],
+         [0, 0, 1, 0, 0],
+         [0, 0, 1, 1, 0],
+         [0, 0, 0, 0, 0],
+         [0, 0, 0, 0, 0]]
+
+changedboard = [[0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0],
+                [0, 0, 0, 0, 0]]
+
+NeighbourNum = 0
+
+while True:
+    for i in range(5):
+        for j in range(5):
+            if board[(i-1)%5][(j-1)%5] == 1:
+                NeighbourNum += 1
+            if board[(i-1)%5][j%5] == 1:
+                NeighbourNum += 1
+            if board[(i-1)%5][(j+1)%5] == 1:
+                NeighbourNum += 1
+            if board[i%5][(j-1)%5] == 1:
+                NeighbourNum += 1
+            if board[i%5][(j+1)%5] == 1:
+                NeighbourNum += 1
+            if board[(i+1)%5][(j-1)%5] == 1:
+                NeighbourNum += 1
+            if board[(i+1)%5][j%5] == 1:
+                NeighbourNum += 1
+            if board[(i+1)%5][(j+1)%5] == 1:
+                NeighbourNum += 1
+            print(NeighbourNum)
+            if board[i][j] == 0 and NeighbourNum == 3:
+                changedboard[i][j] = 1
+            elif board[i][j] == 1 and NeighbourNum == 1:
+                changedboard[i][j] = 0
+            elif board[i][j] == 1 and NeighbourNum >= 4:
+                changedboard[i][j] = 0
+            else:
+                changedboard[i][j] = board[i][j]
+            NeighbourNum = 0
+    board = changedboard
+    print(board)
